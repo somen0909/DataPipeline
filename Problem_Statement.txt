@@ -1,0 +1,45 @@
+Assignment Overview:
+
+Task: Develop an ETL pipeline that fetches COVID-19 data from a specified API, cleans the data, aggregates it by geographical divisions (states/districts/blocks), and stores it in a relational database for further analysis.
+
+Steps: 
+1. Fetch the Data: Make an API call to retrieve a dataset containing COVID-19 data. Ensure the dataset has geographical information (like state, district, block) and relevant metrics (such as cases, deaths, recoveries, etc.).
+2. Data Cleansing: Clean the data by handling missing values, ensuring consistent data types, and removing or correcting erroneous entries. Standardize geographical names (e.g., ensure consistent spelling and capitalization).
+3. Data Aggregation: Group the data by relevant geographical divisions (e.g., by state, then district, then block). Perform necessary calculations, such as summing cases, deaths, and recoveries within each group.
+4. Store in RDBMS: Connect to the destination PostgreSQL. Create the necessary tables to store the cleaned and aggregated data. Insert the data into the appropriate tables.
+
+Instruction: The pipeline must be orchestrated using Apache Airflow. The DAG should start when a new file is added to Amazon S3 (which contains a country code for fetching COVID-19 data). Extract the country code from the file on S3 and make an API call to retrieve the data for that country. After performing the specified ETL operations, store the results in a PostgreSQL database. The setup must be deployed on Kubernetes. Additionally, collect Airflow logs and metrics using Loki and Prometheus, then display the metrics on a Grafana dashboard for visualization. 
+
+
+KPI/metrics required in final data:
+Metrics to calculate from Raw Data(don't use existing/pre-calculated dataset) - 
+
+1. New Cases:
+   - The number of new COVID-19 cases reported in a given period. This indicates the rate of spread and can be used to track outbreaks.
+2. Total Cases:
+   - The cumulative number of confirmed COVID-19 cases. This KPI helps assess the overall impact of the pandemic on a population or region.
+3. Active Cases:
+   - The number of ongoing or active cases at any point in time. It reflects the current burden on healthcare systems.
+4. New Deaths:
+   - The number of new deaths attributed to COVID-19 within a specific timeframe. This is an important measure of the disease's severity and public health impact.
+5. Total Deaths:
+   - The cumulative number of COVID-19-related deaths. This helps gauge the long-term impact of the pandemic.
+6. Recovered Cases:
+   - The total number of individuals who have recovered from COVID-19. It provides insights into recovery rates and the effectiveness of treatments.
+7. Case Fatality Rate (CFR):
+   - The percentage of confirmed cases that result in death. This metric indicates the lethality of the virus and can guide public health responses.
+8. Hospitalization Rate:
+   - The proportion of confirmed cases requiring hospitalization. This indicates the healthcare burden and helps in resource planning.
+9. Testing Rate:
+   - The number of COVID-19 tests conducted per capita or over a given period. This metric is crucial for understanding the level of testing and detection rates.
+10. Positivity Rate:
+    - The percentage of COVID-19 tests that return positive results. This KPI can indicate the prevalence of the virus in the community.
+11. Vaccination Rate:
+    - The percentage of the population that has received one or more doses of a COVID-19 vaccine. This is vital for monitoring vaccination progress.
+12. R-Value (Reproduction Number):
+    - The average number of people that a single infected person will infect. This is a key measure for understanding the spread and controlling outbreaks.
+13. Healthcare Capacity:
+    - The number of hospital beds, ICU beds, and ventilators available. This is crucial for ensuring healthcare systems are not overwhelmed.
+14. Mobility Trends:
+    - Changes in public mobility patterns during the pandemic. This can reflect the impact of lockdowns and other measures.
+
