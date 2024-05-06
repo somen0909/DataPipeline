@@ -1,0 +1,23 @@
+Here, airflow is deployed in kubernetes using kind.
+
+Prerequisites:
+kubectl
+kind
+docker
+helm
+
+Following commands were used to install kubernetes cluster:
+
+1. kind create cluster --name airflow-cluster --config kind-cluster.yaml
+
+2. helm repo add apache-airflow https://airflow.apache.org
+
+3. helm repo update
+
+4. kubectl create namespace airflow
+
+5. helm install airflow apache-airflow/airflow --namespace airflow --debug
+
+To open airflow UI:
+kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow --context kind-airflow-cluster
+Use: localhost:8080
