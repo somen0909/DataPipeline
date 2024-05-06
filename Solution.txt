@@ -21,3 +21,10 @@ Following commands were used to install kubernetes cluster:
 To open airflow UI:
 kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow --context kind-airflow-cluster
 Use: localhost:8080
+
+
+
+
+helm install loki grafana/loki-stack
+helm install prometheus prometheus-community/prometheus
+helm install grafana grafana/grafana
